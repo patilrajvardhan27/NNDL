@@ -1,0 +1,273 @@
+%% ============================================================
+%%  CSCI 4922/5922 — Lab Assignment 3 Report
+%%  Neural Networks and Deep Learning, Spring 2026
+%%  Visual Question Answering on VizWiz
+%% ============================================================
+
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange!80!black},
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  xleftmargin=1.5em,
+}
+
+\title{
+  \textbf{Lab Assignment 3: Visual Question Answering on VizWiz}\\
+  \large CSCI 5922 — Neural Networks and Deep Learning, Spring 2026
+}
+\author{Rajvardhan Patil}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ════════════════════════════════════════════════════════════
+\section{Custom Multi-Modal Architectures (Challenges 1 \& 2)}
+% ════════════════════════════════════════════════════════════
+
+\subsection{Methods}
+
+Images are resized to $112\times112$, randomly flipped horizontally during training, and
+normalized with ImageNet statistics. Questions are lowercased, tokenized, and padded to
+20 tokens with a 5{,}002-word vocabulary. For Task 1, class-weighted cross-entropy loss
+counters the 73\% answerable imbalance ($w_0 \approx 2.71$, $w_1 = 1.0$). For Task 2,
+the majority-vote answer over 10 responses is the training target, using a closed
+vocabulary of the top-1{,}000 answers. Training uses the first 10{,}000 samples with images
+pre-cached in RAM to avoid repeated disk I/O.
+
+\paragraph{Experiment 3.1 — Attention Heads Ablation (Task 1).}
+\textit{Hypothesis:} Performance will peak at 4 heads. With $d=256$, an 8-head config gives
+only 32 dims per head, which may be too narrow; 4 heads at 64 dims each should be optimal.
+\textit{Variable:} nhead $\in \{1, 2, 4, 8\}$ in the cross-modal fusion layer.
+All other settings fixed: AdamW, lr $= 3\times10^{-4}$, batch 128, 15 epochs.
+
+\paragraph{Experiment 3.2 — Supervision Strategy (Task 2).}
+\textit{Hypothesis:} Majority-vote supervision will outperform using all 10 answers.
+Training on all 10 answers per sample expands the dataset 10$\times$ but introduces
+conflicting gradients when annotators disagree.
+\textit{Variable:} Condition A — majority vote; Condition B — all 10 answers as separate examples.
+
+\paragraph{Architecture.}
+\textbf{Image:} 4-block CNN (Conv+BN+ReLU+Pool) trained from scratch, $112\to1\times1$,
+projected to 256-d. \textbf{Text:} Embedding + sinusoidal PE + 2-layer Transformer,
+mean-pooled to 256-d. \textbf{Fusion:} Image and text stacked as a 2-token sequence,
+processed by multi-head self-attention, concatenated and projected to 256-d.
+\textbf{Head (Task 1):} Linear(256,128) $\to$ ReLU $\to$ Dropout(0.3) $\to$ Linear(128,2).
+\textbf{Head (Task 2):} Same but output is Linear(128,1000) over the answer vocabulary.
+
+\subsection{Results}
+
+\begin{table}[h]
+  \centering
+  \caption{Exp.\ 3.1: Fusion attention heads vs.\ validation accuracy.}
+  \label{tab:exp31_cls}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Condition} & \textbf{Val Acc (\%)} & \textbf{Notes} \\
+    \midrule
+    nhead = 1 & \textbf{74.11} & Widest per-head dim \\
+    nhead = 2 & 73.74 & Marginal decrease \\
+    nhead = 4 & 73.51 & Slight drop \\
+    nhead = 8 & 74.32 & Recovers; statistically equivalent to nhead=1 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Exp.\ 3.2: Supervision strategy vs.\ human answer accuracy.}
+  \label{tab:exp32_gen}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Condition} & \textbf{Val Answer Acc} & \textbf{Notes} \\
+    \midrule
+    A: Majority Vote  & \textbf{0.21} & Stable, consistent supervision \\
+    B: All 10 Answers & 0.18          & Contradictory gradients hurt learning \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Analysis}
+
+\textbf{Task 1.} The hypothesis was not supported — all four head counts land within 0.8
+points of each other. The fusion module operates on a 2-token sequence, so attention is
+just a $2\times2$ matrix; multiple heads provide no complementary specialization here. We
+select nhead=4 for the final model. The $\approx$74\% accuracy exceeds the 68\%
+always-answerable baseline, confirming real signal is learned.
+
+\textbf{Task 2.} Majority vote outperforms all-answers augmentation as predicted. When
+one annotator says ``red'' and nine say ``unanswerable,'' training on all 10 creates
+conflicting gradients. Majority vote avoids this. Overall answer accuracy is low (0.21)
+because the VizWiz images are often blurry and the CNN is trained from scratch.
+
+% ════════════════════════════════════════════════════════════
+\section{Foundation Model Features: CLIP (Challenges 3 \& 4)}
+% ════════════════════════════════════════════════════════════
+
+\subsection{Methods}
+
+Pre-extracted 512-d CLIP features are loaded directly for train, val, and test splits.
+No additional normalization is needed since CLIP embeddings are already unit-normalized.
+The 10{,}000 sample cap is enforced by slicing the training tensor.
+
+\paragraph{Experiment 4.1 — Fusion Strategy (Task 1).}
+\textit{Hypothesis:} Concatenation will outperform sum and cross-attention. Concat gives
+the MLP independent access to both feature sets; sum discards channel identities;
+cross-attention on length-1 sequences degenerates to a scalar weighting.
+\textit{Variable:} Concat $[f_\text{img} \| f_\text{txt}]$ vs.\ Sum $f_\text{img}+f_\text{txt}$
+vs.\ Cross-Attention. Fixed: Adam, lr $=3\times10^{-4}$, batch 256, 30 epochs.
+
+\paragraph{Experiment 4.2 — Vocab Size (Task 2).}
+\textit{Hypothesis:} Vocab=1{,}000 will perform best. Vocab=500 is too coarse; vocab=2{,}000
+gives only $\approx$5 training examples per class, too few for reliable learning.
+\textit{Variable:} Answer vocabulary size $\in \{500, 1000, 2000\}$.
+
+\paragraph{Architecture.}
+\textbf{Task 1 (Challenge 3):} Concat $\to$ Linear(1024,512)+LN+ReLU+Drop(0.3) $\to$
+Linear(512,256)+LN+ReLU+Drop(0.21) $\to$ Linear(256,2), class-weighted loss.
+\textbf{Task 2 (Challenge 4):} Same hidden layers, output Linear(256,1000), standard CE loss.
+
+\subsection{Results}
+
+\begin{table}[h]
+  \centering
+  \caption{Exp.\ 4.1: CLIP fusion strategy vs.\ binary classification accuracy.}
+  \label{tab:exp41_cls}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Condition} & \textbf{Val Acc (\%)} & \textbf{Notes} \\
+    \midrule
+    A: Concat $\to$ MLP    & \textbf{81.52} & Best; full access to both feature sets \\
+    B: Sum $\to$ MLP       & 80.53 & Competitive; CLIP alignment helps \\
+    C: Cross-Attention     & 69.44 & Degenerate for length-1 sequences \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{Exp.\ 4.2: Answer vocabulary size vs.\ validation classification accuracy.}
+  \label{tab:exp42_gen}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Condition} & \textbf{Val Cls Acc} & \textbf{Notes} \\
+    \midrule
+    Vocab = 500  & \textbf{68.88} & Easier task; fewer classes \\
+    Vocab = 1000 & 65.27 & Harder; data spread thinner \\
+    Vocab = 2000 & 62.12 & Too sparse; $\approx$5 examples/class \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Analysis}
+
+\textbf{Task 1.} Concatenation wins as predicted. The MLP can learn image-only and
+text-only signals independently before combining them. Sum conflates the two modalities.
+Cross-attention on single-vector inputs is degenerate since attention collapses to a
+scalar weight, making it equivalent to a linear combination.
+
+\textbf{Task 2.} The 500-class vocab achieves the highest accuracy, contradicting the
+hypothesis. As vocab grows, the classification task gets harder and per-class data
+density drops too low. That said, classification accuracy is a proxy — a larger vocab
+may cover more answer types even if harder to optimize.
+
+\textbf{E2E vs.\ CLIP.} CLIP (concat) reaches 81.52\% vs.\ $\approx$74\% for E2E on
+binary classification, a gap of 7--8 points. CLIP was pretrained on 400 million
+image-text pairs and arrives with rich aligned representations. Our E2E model must
+learn features, fusion, and classification from 10{,}000 samples from scratch, which is
+a much harder problem. CLIP is the clear choice for low-data settings.
+
+% ════════════════════════════════════════════════════════════
+\section{Data Efficiency (CSCI 5922 Only)}
+% ════════════════════════════════════════════════════════════
+
+\subsection{Hypothesis}
+
+The E2E model will benefit more from additional data than the CLIP model. The E2E CNN
+must learn visual features from scratch and is likely data-limited at 50\%. The CLIP
+MLP starts from semantically rich embeddings and should saturate earlier, since the
+bottleneck is the embedding quality rather than labeled data quantity.
+
+\subsection{Methods}
+
+Both models use fixed hyperparameters from their competition runs. Training fractions:
+50\% (10{,}000 samples), 75\% (15{,}392 samples), 100\% (20{,}523 samples). All runs use
+seed 42; evaluation on the full 4{,}319-sample validation set.
+
+\subsection{Results}
+
+\begin{table}[h]
+  \centering
+  \caption{Validation accuracy across training data fractions.}
+  \label{tab:data_eff}
+  \begin{tabular}{llccc}
+    \toprule
+    \textbf{Model} & \textbf{Architecture} & \textbf{50\%} & \textbf{75\%} & \textbf{100\%} \\
+    \midrule
+    End-to-End & CNN + Transformer + Fusion & 74.3 & 73.7 & 75.4 \\
+    CLIP-based & MLP on CLIP features       & 81.4 & 82.0 & 83.3 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Analysis}
+
+The E2E model is non-monotonic: accuracy dips at 75\% before recovering at 100\%. This
+reflects training variance in a from-scratch CNN — the 15K regime appears to be an
+unstable midpoint where the model has seen more variety but not yet enough signal to
+exploit it. Net gain from 50\% to 100\%: $+1.1$ points.
+
+The CLIP model improves monotonically ($+1.9$ points), larger in absolute terms than the
+E2E gain — partially contradicting the hypothesis. The CLIP MLP continues to sharpen
+its decision boundary with more data rather than saturating.
+
+The core hypothesis still holds in a broader sense: the CLIP model at 50\% data (81.4\%)
+outperforms the E2E model at 100\% data (75.4\%) by nearly 6 points. Foundation model
+features provide a higher accuracy floor at every data fraction. In low-data settings
+like VizWiz, CLIP embeddings are a far more data-efficient starting point.
+
+% ════════════════════════════════════════════════════════════
+\clearpage
+\appendix
+\section*{Appendix: Code}
+% ════════════════════════════════════════════════════════════
+
+\subsection*{A.1 End-to-End Models (Challenges 1 \& 2): \texttt{run\_e2e.py}}
+
+\lstinputlisting[language=Python]{run_e2e.py}
+
+\subsection*{A.2 CLIP Feature-Based Models (Challenges 3 \& 4): \texttt{solution\_clip.py}}
+
+\lstinputlisting[language=Python]{solution_clip.py}
+
+\subsection*{A.3 Controlled Experiments (Sections 1 \& 2 CLIP): \texttt{run\_experiments.py}}
+
+\lstinputlisting[language=Python]{run_experiments.py}
+
+\subsection*{A.4 Data Efficiency Experiments (Section 3): \texttt{data\_efficiency.py}}
+
+\lstinputlisting[language=Python]{data_efficiency.py}
+
+\end{document}

@@ -1,0 +1,14 @@
+# Lab Assignment 1 Requirements
+# Neural Networks and Deep Learning
+
+# Core dependencies
+torch>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# Optional but recommended
+tqdm>=4.65.0  # Progress bars for training
+
+# For development/testing
+ipython>=8.0.0  # Interactive shell (optional)
+jupyter>=1.0.0  # For notebook experiments (optional)

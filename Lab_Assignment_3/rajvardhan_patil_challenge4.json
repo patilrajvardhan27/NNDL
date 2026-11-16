@@ -1,0 +1,402 @@
+[
+  {
+    "image": "VizWiz_test_00000100.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000101.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000102.jpg",
+    "answer": "healthy choice"
+  },
+  {
+    "image": "VizWiz_test_00000103.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000104.jpg",
+    "answer": "beer"
+  },
+  {
+    "image": "VizWiz_test_00000105.jpg",
+    "answer": "coffee"
+  },
+  {
+    "image": "VizWiz_test_00000106.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000107.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000108.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000109.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000110.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000111.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000112.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000113.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000114.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000115.jpg",
+    "answer": "lotion"
+  },
+  {
+    "image": "VizWiz_test_00000116.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000117.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000118.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000119.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000120.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000121.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000122.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000123.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000124.jpg",
+    "answer": "water bottle"
+  },
+  {
+    "image": "VizWiz_test_00000125.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000126.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000127.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000128.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000129.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000130.jpg",
+    "answer": "white"
+  },
+  {
+    "image": "VizWiz_test_00000131.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000132.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000133.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000134.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000135.jpg",
+    "answer": "soup"
+  },
+  {
+    "image": "VizWiz_test_00000136.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000137.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000138.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000139.jpg",
+    "answer": "corn"
+  },
+  {
+    "image": "VizWiz_test_00000140.jpg",
+    "answer": "pink"
+  },
+  {
+    "image": "VizWiz_test_00000141.jpg",
+    "answer": "white"
+  },
+  {
+    "image": "VizWiz_test_00000142.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000143.jpg",
+    "answer": "ibuprofen"
+  },
+  {
+    "image": "VizWiz_test_00000144.jpg",
+    "answer": "black"
+  },
+  {
+    "image": "VizWiz_test_00000145.jpg",
+    "answer": "money"
+  },
+  {
+    "image": "VizWiz_test_00000146.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000147.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000148.jpg",
+    "answer": "soup"
+  },
+  {
+    "image": "VizWiz_test_00000149.jpg",
+    "answer": "cereal"
+  },
+  {
+    "image": "VizWiz_test_00000150.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000151.jpg",
+    "answer": "pink"
+  },
+  {
+    "image": "VizWiz_test_00000152.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000153.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000154.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000155.jpg",
+    "answer": "tomatoes"
+  },
+  {
+    "image": "VizWiz_test_00000156.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000157.jpg",
+    "answer": "grey"
+  },
+  {
+    "image": "VizWiz_test_00000158.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000159.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000160.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000161.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000162.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000163.jpg",
+    "answer": "liquid"
+  },
+  {
+    "image": "VizWiz_test_00000164.jpg",
+    "answer": "apple"
+  },
+  {
+    "image": "VizWiz_test_00000165.jpg",
+    "answer": "chicken"
+  },
+  {
+    "image": "VizWiz_test_00000166.jpg",
+    "answer": "cheerios"
+  },
+  {
+    "image": "VizWiz_test_00000167.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000168.jpg",
+    "answer": "blue"
+  },
+  {
+    "image": "VizWiz_test_00000169.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000170.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000171.jpg",
+    "answer": "windex"
+  },
+  {
+    "image": "VizWiz_test_00000172.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000173.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000174.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000175.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000176.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000177.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000178.jpg",
+    "answer": "red"
+  },
+  {
+    "image": "VizWiz_test_00000179.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000180.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000181.jpg",
+    "answer": "green beans"
+  },
+  {
+    "image": "VizWiz_test_00000182.jpg",
+    "answer": "red"
+  },
+  {
+    "image": "VizWiz_test_00000183.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000184.jpg",
+    "answer": "yes"
+  },
+  {
+    "image": "VizWiz_test_00000185.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000186.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000187.jpg",
+    "answer": "hand"
+  },
+  {
+    "image": "VizWiz_test_00000188.jpg",
+    "answer": "grey"
+  },
+  {
+    "image": "VizWiz_test_00000189.jpg",
+    "answer": "soup"
+  },
+  {
+    "image": "VizWiz_test_00000190.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000191.jpg",
+    "answer": "computer mouse"
+  },
+  {
+    "image": "VizWiz_test_00000192.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000193.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000194.jpg",
+    "answer": "bug"
+  },
+  {
+    "image": "VizWiz_test_00000195.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000196.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000197.jpg",
+    "answer": "unanswerable"
+  },
+  {
+    "image": "VizWiz_test_00000198.jpg",
+    "answer": "smoked bacon tomato"
+  },
+  {
+    "image": "VizWiz_test_00000199.jpg",
+    "answer": "beans"
+  }
+]

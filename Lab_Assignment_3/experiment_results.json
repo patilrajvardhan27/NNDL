@@ -1,0 +1,12 @@
+{
+  "exp4_1_concat": 0.8152,
+  "exp4_1_sum": 0.8053,
+  "exp4_1_cross_attn": 0.6944,
+  "exp4_2_vocab500": 0.6888,
+  "exp4_2_vocab1000": 0.6527,
+  "exp4_2_vocab2000": 0.6212,
+  "exp3_1_nhead1": 0.7411,
+  "exp3_1_nhead2": 0.7374,
+  "exp3_1_nhead4": 0.7351,
+  "exp3_1_nhead8": 0.7432
+}

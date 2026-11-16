@@ -1,0 +1,24 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.venv/
+*.dylib
+
+# Node / Next.js
+node_modules/
+.next/
+
+# Separate repo already on GitHub (TerraLens)
+Project/
+
+# VizWiz images, ~18 GB, too big for GitHub's free tier
+Lab_Assignment_3/train/
+Lab_Assignment_3/test/
+Lab_Assignment_3/val/
