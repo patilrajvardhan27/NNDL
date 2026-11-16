@@ -2,7 +2,7 @@
 ## Implementation Report and Analysis
 
 **Course:** Neural Networks and Deep Learning
-**Student:** [Your Name]
+**Student:** Rajvardhan Patil
 **Date:** January 20, 2026
 
 ---

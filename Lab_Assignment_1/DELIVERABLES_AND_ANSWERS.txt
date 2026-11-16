@@ -3,7 +3,7 @@ LAB ASSIGNMENT 1: NEURAL NETWORKS AND DEEP LEARNING
 DELIVERABLES, QUESTIONS, AND ANSWERS GUIDE
 ================================================================================
 
-Student: [Your Name]
+Student: Rajvardhan Patil
 Date: January 20, 2026
 
 This document provides a structured guide to all deliverables and answers

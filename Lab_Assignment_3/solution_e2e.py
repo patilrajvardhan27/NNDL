@@ -898,12 +898,12 @@ def main():
     # ── Save predictions ──
     preds1 = generate_challenge1_predictions(
         model1, test_data, w2i,
-        os.path.join(BASE, "raj_kanakarajan_challenge1.pkl")
+        os.path.join(BASE, "rajvardhan_patil_challenge1.pkl")
     )
 
     preds2 = generate_challenge2_predictions(
         model2, test_data, w2i, idx2ans,
-        os.path.join(BASE, "raj_kanakarajan_challenge2.json")
+        os.path.join(BASE, "rajvardhan_patil_challenge2.json")
     )
 
     # ── Section 5: Data Efficiency (5922 only) ──

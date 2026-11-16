@@ -5,10 +5,10 @@
 | Item | Where | Status |
 |------|--------|--------|
 | PDF (report + code appendix) | **Gradescope** | ⚠️ Need to compile .tex → .pdf |
-| `raj_kanakarajan_challenge1.pkl` | **Canvas** | ✅ Ready |
-| `raj_kanakarajan_challenge2.json` | **Canvas** | ✅ Ready |
-| `raj_kanakarajan_challenge3.pkl` | **Canvas** | ✅ Ready |
-| `raj_kanakarajan_challenge4.json` | **Canvas** | ✅ Ready |
+| `rajvardhan_patil_challenge1.pkl` | **Canvas** | ✅ Ready |
+| `rajvardhan_patil_challenge2.json` | **Canvas** | ✅ Ready |
+| `rajvardhan_patil_challenge3.pkl` | **Canvas** | ✅ Ready |
+| `rajvardhan_patil_challenge4.json` | **Canvas** | ✅ Ready |
 
 ---
 
@@ -63,10 +63,10 @@ The appendix currently includes `run_e2e.py` and `solution_clip.py`, but `run_ex
 ### Prediction Files (all verified)
 | File | Samples | Format | Test Indices |
 |------|---------|--------|--------------|
-| `raj_kanakarajan_challenge1.pkl` | 100 | 1D int64 tensor, values {0,1} | 100–199 ✅ |
-| `raj_kanakarajan_challenge2.json` | 100 | `[{"image": ..., "answer": ...}]` | 100–199 ✅ |
-| `raj_kanakarajan_challenge3.pkl` | 100 | 1D int64 tensor, values {0,1} | 100–199 ✅ |
-| `raj_kanakarajan_challenge4.json` | 100 | `[{"image": ..., "answer": ...}]` | 100–199 ✅ |
+| `rajvardhan_patil_challenge1.pkl` | 100 | 1D int64 tensor, values {0,1} | 100–199 ✅ |
+| `rajvardhan_patil_challenge2.json` | 100 | `[{"image": ..., "answer": ...}]` | 100–199 ✅ |
+| `rajvardhan_patil_challenge3.pkl` | 100 | 1D int64 tensor, values {0,1} | 100–199 ✅ |
+| `rajvardhan_patil_challenge4.json` | 100 | `[{"image": ..., "answer": ...}]` | 100–199 ✅ |
 
 ### Report Structure
 - ✅ Methods / Results / Analysis structure followed in all 3 sections

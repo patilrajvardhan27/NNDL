@@ -1,7 +1,7 @@
 # Lab Assignment 3 — Complete Theory Notes, Design Rationale & Report Deliverables
 ### CSCI 5922 — Neural Networks and Deep Learning, Spring 2026
 ### Visual Question Answering on VizWiz
-### Student: Raj Kanakarajan
+### Student: Rajvardhan Patil
 
 ---
 
@@ -508,10 +508,10 @@ All 4 competition prediction files were generated:
 
 | File | Challenge | Task | Samples | Format |
 |------|-----------|------|---------|--------|
-| `raj_kanakarajan_challenge1.pkl` | 1 (E2E Cls) | Binary classification | 100 (idx 100-199) | 1D torch tensor of {0,1} |
-| `raj_kanakarajan_challenge2.json` | 2 (E2E Gen) | Answer generation | 100 (idx 100-199) | List of {image, answer} dicts |
-| `raj_kanakarajan_challenge3.pkl` | 3 (CLIP Cls) | Binary classification | 100 (idx 100-199) | 1D torch tensor of {0,1} |
-| `raj_kanakarajan_challenge4.json` | 4 (CLIP Gen) | Answer generation | 100 (idx 100-199) | List of {image, answer} dicts |
+| `rajvardhan_patil_challenge1.pkl` | 1 (E2E Cls) | Binary classification | 100 (idx 100-199) | 1D torch tensor of {0,1} |
+| `rajvardhan_patil_challenge2.json` | 2 (E2E Gen) | Answer generation | 100 (idx 100-199) | List of {image, answer} dicts |
+| `rajvardhan_patil_challenge3.pkl` | 3 (CLIP Cls) | Binary classification | 100 (idx 100-199) | 1D torch tensor of {0,1} |
+| `rajvardhan_patil_challenge4.json` | 4 (CLIP Gen) | Answer generation | 100 (idx 100-199) | List of {image, answer} dicts |
 
 **Challenge 1 results**: Model predicted 74/100 as answerable (74%). This is slightly above the 73% training base rate, so the model isn't completely degenerate (predicting 100% answerable would give 73%).
 
